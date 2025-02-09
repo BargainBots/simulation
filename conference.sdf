@@ -17,6 +17,252 @@
       <background>0.699999988 0.699999988 0.699999988 1</background>
       <shadows>true</shadows>
     </scene>
+    <plugin name='gz::sim::systems::TriggeredPublisher' filename='gz-sim-triggered-publisher-system'>
+      <input type='gz.msgs.Int32' topic='/keyboard/keypress'>
+        <match field='data'>16777234</match>
+      </input>
+      <output type='gz.msgs.Twist' topic='/cmd_vel'>linear: {x: 0.0}, angular: {z: 0.5}</output>
+    </plugin>
+    <plugin name='gz::sim::systems::TriggeredPublisher' filename='gz-sim-triggered-publisher-system'>
+      <input type='gz.msgs.Int32' topic='/keyboard/keypress'>
+        <match field='data'>16777235</match>
+      </input>
+      <output type='gz.msgs.Twist' topic='/cmd_vel'>linear: {x: 0.5}, angular: {z: 0.0}</output>
+    </plugin>
+    <plugin name='gz::sim::systems::TriggeredPublisher' filename='gz-sim-triggered-publisher-system'>
+      <input type='gz.msgs.Int32' topic='/keyboard/keypress'>
+        <match field='data'>16777236</match>
+      </input>
+      <output type='gz.msgs.Twist' topic='/cmd_vel'>linear: {x: 0.0}, angular: {z: -0.5}</output>
+    </plugin>
+    <plugin name='gz::sim::systems::TriggeredPublisher' filename='gz-sim-triggered-publisher-system'>
+      <input type='gz.msgs.Int32' topic='/keyboard/keypress'>
+        <match field='data'>16777237</match>
+      </input>
+      <output type='gz.msgs.Twist' topic='/cmd_vel'>linear: {x: -0.5}, angular: {z: 0.0}</output>
+    </plugin>
+    <plugin name='gz::sim::systems::TriggeredPublisher' filename='gz-sim-triggered-publisher-system'>
+      <input type='gz.msgs.Int32' topic='/keyboard/keypress'>
+        <match field='data'>66</match>
+      </input>
+      <output type='gz.msgs.Twist' topic='/cmd_vel'>linear: {x: 0.0}, angular: {z: 0.0}</output>
+    </plugin>
+    <gui fullscreen='false'>
+      <plugin name='3D View' filename='MinimalScene'>
+        <gz-gui>
+          <title>3D View</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='string' key='state'>docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>-4.6191 -1.3439 1.6972 0.5 0</camera_pose>
+        <camera_clip>
+          <near>0.25</near>
+          <far>25000</far>
+        </camera_clip>
+      </plugin>
+      <plugin name='Entity context menu' filename='EntityContextMenuPlugin'>
+        <gz-gui>
+          <property key='state' type='string'>floating</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Scene Manager' filename='GzSceneManager'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Interactive view control' filename='InteractiveViewControl'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Camera Tracking' filename='CameraTracking'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Marker manager' filename='MarkerManager'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Select Entities' filename='SelectEntities'>
+        <gz-gui>
+          <anchors target='Select entities'>
+            <line own='right' target='right'/>
+            <line own='top' target='top'/>
+          </anchors>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Visualization Capabilities' filename='VisualizationCapabilities'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Spawn Entities' filename='Spawn'>
+        <gz-gui>
+          <anchors target='Select entities'>
+            <line own='right' target='right'/>
+            <line own='top' target='top'/>
+          </anchors>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='World control' filename='WorldControl'>
+        <gz-gui>
+          <title>World control</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='bool' key='resizable'>false</property>
+          <property type='double' key='height'>72</property>
+          <property type='double' key='width'>121</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='left' target='left'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+        <play_pause>true</play_pause>
+        <step>true</step>
+        <start_paused>true</start_paused>
+        <use_event>true</use_event>
+      </plugin>
+      <plugin name='World stats' filename='WorldStats'>
+        <gz-gui>
+          <title>World stats</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='bool' key='resizable'>false</property>
+          <property type='double' key='height'>110</property>
+          <property type='double' key='width'>290</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='right' target='right'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+      </plugin>
+      <plugin name='Shapes' filename='Shapes'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>0</property>
+          <property key='y' type='double'>0</property>
+          <property key='width' type='double'>250</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#666666</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Lights' filename='Lights'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>250</property>
+          <property key='y' type='double'>0</property>
+          <property key='width' type='double'>150</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#666666</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Transform control' filename='TransformControl'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>0</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>250</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Screenshot' filename='Screenshot'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>250</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>50</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='VideoRecorder' filename='VideoRecorder'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>300</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>50</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+        <record_video>
+          <use_sim_time>true</use_sim_time>
+          <lockstep>false</lockstep>
+          <bitrate>4000000</bitrate>
+        </record_video>
+      </plugin>
+      <plugin name='Component inspector' filename='ComponentInspector'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Entity tree' filename='EntityTree'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='View angle' filename='ViewAngle'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+      </plugin>
+      <plugin name='Key Publisher' filename='KeyPublisher'/>
+    </gui>
     <model name='ground_plane'>
       <static>true</static>
       <link name='link'>
@@ -69,48 +315,787 @@
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/reflective table/3</uri>
       <name>Reflective table</name>
-      <pose>-0.31543418148406399 -0.86040964025914746 0 0 2.1684043449710089e-19 0</pose>
+      <pose>-0.31543399999999999 -0.86041000000000001 0 0 2.1684e-19 0</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
       <name>OfficeChair</name>
-      <pose>0.19138771026950607 -3.0705377239350375 0 0 0 0</pose>
+      <pose>0.191388 -3.0705399999999998 0 0 0 0</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
       <name>OfficeChair_0</name>
-      <pose>-0.91532999277114868 -0.9238860011100769 0 0 0 -1.5137199759649866</pose>
+      <pose>-0.91532999999999998 -0.92388599999999999 0 0 0 -1.51372</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
       <name>OfficeChair_1</name>
-      <pose>0.39055201411247253 1.0693700313568115 0 0 0 2.9133805549308547</pose>
+      <pose>0.39055200000000001 1.0693699999999999 0 0 0 2.9133800000000001</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
       <name>OfficeChair_2</name>
-      <pose>2.0470199584960938 -1.0392500162124634 0 0 0 1.5687972172653295</pose>
+      <pose>2.0470199999999998 -1.03925 0 0 0 1.5688</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/monitorandkeyboard/2</uri>
       <name>MonitorAndKeyboard</name>
-      <pose>0.014684928581118584 -0.87200802564620972 1.0934799909591675 0 0 0</pose>
+      <pose>0.0146848 -0.87200800000000001 1.04009 3.300260000000001e-07 -0.0015926700000000005 4.2459300000000006e-10</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/monitorandkeyboard/2</uri>
       <name>MonitorAndKeyboard_0</name>
-      <pose>0.53232824802398693 -0.19699075818061826 1.0844399929046631 0 0 -1.5702598728287769</pose>
+      <pose>0.53232800000000002 -0.196991 1.0409200000000001 0.0015927000000000003 3.7495699999999429e-06 -1.57026</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/monitorandkeyboard/2</uri>
       <name>MonitorAndKeyboard_1</name>
-      <pose>0.35651901364326483 -1.5686199665069578 1.078784704208374 0 0 1.5789499550885839</pose>
+      <pose>0.35651899999999997 -1.5686199999999999 1.04064 -0.0015925799999999993 1.2855000000000259e-05 1.5789600000000004</pose>
     </include>
     <include>
       <uri>file:///home/parth/.gz/fuel/fuel.gazebosim.org/openrobotics/models/monitorandkeyboard/2</uri>
       <name>MonitorAndKeyboard_2</name>
-      <pose>0.65079498291015614 -0.93047600984573364 1.0779564380645752 0 0 -3.1169399993880709</pose>
+      <pose>0.65079500000000001 -0.93047599999999997 1.04111 4.0518400000000002e-05 0.0015917699999999999 -3.11694</pose>
     </include>
+    <model name='vehicle_blue' canonical_link='chassis'>
+      <pose>-1.5458431463026747 -0.055356167048423034 1.4096298542043417e-06 8.8950182934586778e-07 5.4384010889766578e-06 -0.2469021107062104</pose>
+      <link name='chassis'>
+        <pose>0.10000000000000001 0 0.080000000000000002 0 0 0</pose>
+        <inertial>
+          <mass>0.22878999999999999</mass>
+          <inertia>
+            <ixx>0.019065800000000001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.076263399999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.095329200000000003</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.40000000000000002 0.20000000000000001 0.10000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0 0 1 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.40000000000000002 0.20000000000000001 0.10000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_wheel'>
+        <pose>4.4408920985006262e-16 0.12000000000000005 0.080000000000000043 1.5708926535897925 -0.64603673204802037 3.1415926535897931</pose>
+        <inertial>
+          <mass>0.20000000000000001</mass>
+          <inertia>
+            <ixx>0.0086666</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0086666</iyy>
+            <iyz>0</iyz>
+            <izz>0.016</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.080000000000000002</radius>
+              <length>0.040000000000000001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>1 0 0 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.080000000000000002</radius>
+              <length>0.040000000000000001</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_wheel'>
+        <pose>6.6613381477509392e-16 -0.11999999999999994 0.079999999999999682 1.5708926535897931 0.81196688691699948 3.1415926535897931</pose>
+        <inertial>
+          <mass>0.20000000000000001</mass>
+          <inertia>
+            <ixx>0.0086666</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0086666</iyy>
+            <iyz>0</iyz>
+            <izz>0.016</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.080000000000000002</radius>
+              <length>0.040000000000000001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>1 0 0 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.080000000000000002</radius>
+              <length>0.040000000000000001</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='caster_frame' attached_to='chassis'>
+        <pose>0.16 0 -0.040000000000000001 0 0 0</pose>
+      </frame>
+      <link name='caster'>
+        <pose>0.26000000000000001 5.5511151231257827e-17 0.03999999999999998 1.0360184604426357 -0.37828409726418671 1.5281721019334313</pose>
+        <inertial>
+          <mass>0.20000000000000001</mass>
+          <inertia>
+            <ixx>0.0032000000000000002</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0032000000000000002</iyy>
+            <iyz>0</iyz>
+            <izz>0.0032000000000000002</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <sphere>
+              <radius>0.040000000000000001</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+            <specular>0 1 0 1</specular>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.040000000000000001</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='left_wheel_joint' type='revolute'>
+        <pose>0 -4.1633400000000002e-17 -4.1633400000000002e-17 0 0 0</pose>
+        <parent>chassis</parent>
+        <child>left_wheel</child>
+        <axis>
+          <xyz>0 9.6326794747692026e-05 0.99999999536057438</xyz>
+          <limit>
+            <lower>-1.7976900000000001e+308</lower>
+            <upper>1.7976900000000001e+308</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <joint name='right_wheel_joint' type='revolute'>
+        <pose>0 1.80411e-16 -4.1633400000000002e-17 0 0 0</pose>
+        <parent>chassis</parent>
+        <child>right_wheel</child>
+        <axis>
+          <xyz>0 9.6326794747692026e-05 0.99999999536057438</xyz>
+          <limit>
+            <lower>-1.7976900000000001e+308</lower>
+            <upper>1.7976900000000001e+308</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <joint name='caster_wheel' type='ball'>
+        <parent>chassis</parent>
+        <child>caster</child>
+        <pose>0 0 0 0 0 0</pose>
+      </joint>
+      <plugin name='gz::sim::systems::DiffDrive' filename='gz-sim-diff-drive-system'>
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>0.24</wheel_separation>
+        <wheel_radius>0.08</wheel_radius>
+        <odom_publish_frequency>1</odom_publish_frequency>
+        <topic>cmd_vel</topic>
+      </plugin>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='marble_hd2_visuals_only'>
+      <static>true</static>
+      <link name='base_link'>
+        <visual name='Gripper_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Gripper</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraPivot_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraPivot</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraTilt_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraTilt</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='Body_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Body</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0.198626 -2.94259 0.56802799999999998 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='marble_hd2_visuals_only_0'>
+      <static>true</static>
+      <link name='base_link'>
+        <visual name='Gripper_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Gripper</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraPivot_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraPivot</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraTilt_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraTilt</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='Body_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Body</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>1.8179700000000001 -1.0857300000000001 0.59447399999999995 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='marble_hd2_visuals_only_1'>
+      <static>true</static>
+      <link name='base_link'>
+        <visual name='Gripper_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Gripper</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraPivot_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraPivot</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraTilt_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraTilt</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='Body_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Body</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0.39994099999999999 0.90132100000000004 0.56057900000000005 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='marble_hd2_visuals_only_2'>
+      <static>true</static>
+      <link name='base_link'>
+        <visual name='Gripper_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Gripper</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraPivot_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraPivot</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='CameraTilt_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>CameraTilt</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='Body_visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/meshes/hd2.dae</uri>
+              <submesh>
+                <name>Body</name>
+                <center>false</center>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Albedo.jpg</albedo_map>
+                <roughness_map>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/HD2_Roughness.jpg</roughness_map>
+                <metal_map>model://HD2/materials/textures/HD2_Metalness.jpg</metal_map>
+              </metal>
+            </pbr>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/scripts/</uri>
+              <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/marble_hd2_visuals_only/3/files/materials/textures/</uri>
+              <name>UrbanTile/HD2_Diffuse</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <pose>47.5501 0.69208700000000001 0.54134700000000002 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
     <light name='sun' type='directional'>
       <pose>0 0 10 0 0 0</pose>
       <cast_shadows>true</cast_shadows>
@@ -120,9 +1105,9 @@
       <specular>0.200000003 0.200000003 0.200000003 1</specular>
       <attenuation>
         <range>1000</range>
-        <linear>0.01</linear>
-        <constant>0.90000000000000002</constant>
-        <quadratic>0.001</quadratic>
+        <linear>0.0099999997764825821</linear>
+        <constant>0.89999997615814209</constant>
+        <quadratic>0.0010000000474974513</quadratic>
       </attenuation>
       <spot>
         <inner_angle>0</inner_angle>
