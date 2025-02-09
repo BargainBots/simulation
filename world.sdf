@@ -352,5 +352,9 @@
             linear: {x: -2.0}, angular: {z: 0.0}
         </output>
     </plugin>
+
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
   </world>
 </sdf>
