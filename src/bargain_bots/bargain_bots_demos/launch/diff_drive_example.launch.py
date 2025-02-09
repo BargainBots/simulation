@@ -26,8 +26,9 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     # Launch Arguments
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
+    launch_description = []
 
-    def robot_state_publisher(context):
+    def spawn_entity(name, x, y, z):
         # Get URDF or SDF via xacro
         robot_description_content = Command(
             [
@@ -35,9 +36,11 @@ def generate_launch_description():
                 ' ',
                 PathJoinSubstitution([
                     FindPackageShare('bargain_bots_demos'),
-                    "sdf",
-                    f'test_diff_drive.xacro.sdf'
+                    "urdf",
+                    f'test_diff_drive.xacro.urdf'
                 ]),
+                ' ',
+                f'namespace:={name}',
             ]
         )
         robot_description = {'robot_description': robot_description_content}
@@ -45,40 +48,64 @@ def generate_launch_description():
             package='robot_state_publisher',
             executable='robot_state_publisher',
             output='screen',
+            namespace=name,
             parameters=[robot_description]
         )
-        return [node_robot_state_publisher]
 
-    robot_controllers = PathJoinSubstitution(
-        [
-            FindPackageShare('bargain_bots_demos'),
-            'config',
-            'diff_drive_controller.yaml',
-        ]
-    )
+        robot_controllers = PathJoinSubstitution(
+            [
+                FindPackageShare('bargain_bots_demos'),
+                'config',
+                'diff_drive_controller.yaml',
+            ]
+        )
 
-    gz_spawn_entity = Node(
-        package='ros_gz_sim',
-        executable='create',
-        output='screen',
-        arguments=['-topic', 'robot_description', '-name',
-                   'diff_drive', '-allow_renaming', 'true'],
-    )
-
-    joint_state_broadcaster_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_state_broadcaster'],
-    )
-    diff_drive_base_controller_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=[
-            'diff_drive_base_controller',
-            '--param-file',
-            robot_controllers,
+        gz_spawn_entity = Node(
+            package='ros_gz_sim',
+            executable='create',
+            output='screen',
+            namespace=name,
+            arguments=['-topic', 'robot_description', '-name',
+                       'diff_drive', '-allow_renaming', 'true',
+                       '-x', x, '-y', y, '-z', z
+                       ],
+        )
+        joint_state_broadcaster_spawner = Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=[
+                'joint_state_broadcaster',
+                '-c', f'/{name}/controller_manager'
             ],
-    )
+        )
+        diff_drive_base_controller_spawner = Node(
+            package='controller_manager',
+            executable='spawner',
+            arguments=[
+                'diff_drive_base_controller',
+                '--param-file',
+                robot_controllers,
+                '-c', f'/{name}/controller_manager'
+            ],
+        )
+
+        launch_description.append(node_robot_state_publisher)
+        launch_description.append(gz_spawn_entity)
+        launch_description.append(RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=gz_spawn_entity,
+                on_exit=[joint_state_broadcaster_spawner],
+            )
+        ))
+        launch_description.append(RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=joint_state_broadcaster_spawner,
+                on_exit=[diff_drive_base_controller_spawner],
+            )
+        ))
+
+    spawn_entity('r1', '0', '0', '0')
+    spawn_entity('r2', '-4.0', '-1.0', '0')
 
     # Bridge
     bridge = Node(
@@ -105,20 +132,7 @@ def generate_launch_description():
                                        'launch',
                                        'gz_sim.launch.py'])]),
             launch_arguments=[('gz_args', [' -r -v 1 world.sdf'])]),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=gz_spawn_entity,
-                on_exit=[joint_state_broadcaster_spawner],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=joint_state_broadcaster_spawner,
-                on_exit=[diff_drive_base_controller_spawner],
-            )
-        ),
         bridge,
-        gz_spawn_entity,
         # Launch Arguments
         DeclareLaunchArgument(
             'use_sim_time',
@@ -128,6 +142,6 @@ def generate_launch_description():
             'description_format',
             default_value='urdf',
             description='Robot description format to use, urdf or sdf'),
-    ])
-    ld.add_action(OpaqueFunction(function=robot_state_publisher))
+    ] + launch_description)
+
     return ld
